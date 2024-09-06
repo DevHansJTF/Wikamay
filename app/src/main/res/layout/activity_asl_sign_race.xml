@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e9abf4">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCard"
+        android:layout_width="300sp"
+        android:layout_height="240sp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/objectImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="Picture of an Object to Sign" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cameraCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/imageCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4">
+
+        <FrameLayout
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 seconds"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/cameraCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/timeLeftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="57 seconds left"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/timerText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="250sp">
+
+            <Button
+                android:id="@+id/prevButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="←"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                android:includeFontPadding="false"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="→"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                android:includeFontPadding="false"/>
+        </FrameLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

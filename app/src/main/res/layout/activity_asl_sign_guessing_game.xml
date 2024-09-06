@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e9abf4">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCard"
+        android:layout_width="300sp"
+        android:layout_height="240sp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="30dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#FF6961">
+
+        <ImageView
+            android:id="@+id/signImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cameraPreviewCard"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="125dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#E0E0E0">
+
+        <FrameLayout
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/congratsmessage"
+        android:layout_width="427dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="38sp"
+        android:layout_marginBottom="85sp"
+        android:text="The sign you did was correct!"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="250sp">
+
+            <Button
+                android:id="@+id/prevButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="←"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                android:includeFontPadding="false"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp">
+
+            <Button
+                android:id="@+id/nextButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="→"
+                android:textSize="40sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                android:includeFontPadding="false"/>
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

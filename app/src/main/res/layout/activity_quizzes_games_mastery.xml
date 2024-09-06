@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4B0082">
+
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_close"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    <LinearLayout
+        android:id="@+id/coinCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_coin"/>
+
+        <TextView
+            android:id="@+id/coinCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="602"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="12dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/closeButton"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quizzes and Games\nMASTERY:"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="426dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/progress_item_no_icon"
+                    android:id="@+id/signGuessingProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <include layout="@layout/progress_item_no_icon"
+                    android:id="@+id/fingerSpellingProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <include layout="@layout/progress_item_no_icon"
+                    android:id="@+id/signRaceProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <include layout="@layout/progress_item_no_icon"
+                    android:id="@+id/vocabularyMatchingProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <include layout="@layout/progress_item_no_icon"
+                    android:id="@+id/signRecognitionProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <include layout="@layout/progress_item_no_icon"
+                    android:id="@+id/overallProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical">
+
+            <FrameLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp">
+
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_button"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="←"
+                    android:textSize="40sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10sp"
+                    android:includeFontPadding="false"/>
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BACK"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

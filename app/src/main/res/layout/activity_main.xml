@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e9abf4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="American Sign\nLanguage Lessons"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose what you want to learn!"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_marginTop="-16dp"
+            android:layout_marginBottom="24dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:rowCount="3"
+            android:layout_marginTop="-19dp"
+            android:useDefaultMargins="true">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="400px"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#FFB6C1"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageButton
+                    android:id="@+id/alphabetsImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/alphabet_lesson_logo"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Alphabets" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="400px"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#FFA07A"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageButton
+                    android:id="@+id/numbersImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/numbers_lesson_logo"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Numbers" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="400px"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#98FB98"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageButton
+                    android:id="@+id/animalsImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/animals_lesson_logo"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Animals" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="400px"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#FFFFE0"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageButton
+                    android:id="@+id/emotionsImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/emotions_lesson_logo"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Emotions" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="400px"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#ADD8E6"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageButton
+                    android:id="@+id/greetingsImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/greetings_lesson_logo"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Basic Greetings" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="400px"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardBackgroundColor="#DDA0DD"
+                android:clipChildren="true"
+                android:clipToPadding="true">
+
+                <ImageButton
+                    android:id="@+id/progressImageButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/progress_lesson_logo"
+                    android:scaleType="fitXY"
+                    android:background="@android:color/transparent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="My Progress" />
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+        <Button
+            android:id="@+id/challengesAndQuizButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHALLENGES AND QUIZ!"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="3dp"
+            android:padding="16dp"
+            android:textStyle="bold"
+            app:backgroundTint="#FF0000"
+            style="@style/Widget.MaterialComponents.Button"/>
+
+    </LinearLayout>
+</ScrollView>

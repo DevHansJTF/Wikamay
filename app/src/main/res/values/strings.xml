@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Wikamay</string>
+    <string name="item_icon_description">Icon representing the item</string>
+</resources>
