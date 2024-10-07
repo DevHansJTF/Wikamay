@@ -29,6 +29,14 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    // Add this block to resolve conflicts
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            pickFirsts += "**/*.so"
+        }
+    }
 }
 
 dependencies {
@@ -39,4 +47,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Add this to ensure you're using the latest versions
+    implementation("androidx.core:core-ktx:1.12.0")
 }
