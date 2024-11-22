@@ -1,20 +1,42 @@
 package com.example.wikamay;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.widget.Button;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageProxy;
+import androidx.camera.view.PreviewView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class ASLFingerSpellingActivity extends AppCompatActivity {
 
     private ImageView image1, image2;
     private TextView wordText, underscore1, underscore2, underscore3, timerText;
-    private CardView cameraCard;
-    private Button prevButton, nextButton;
+    private PreviewView cameraPreview;
+    private View prevButton, nextButton;
     private CountDownTimer timer;
+    private TextView detectedWordText;
+
+    private static final int REQUEST_CODE_PERMISSION = 101;
+    private static final String[] REQUIRED_PERMISSION = new String[]{"android.permission.CAMERA"};
+
+    private TorchModelHandler torchModelHandler;
+    private CameraManager cameraManager;
+
+    private List<ASLSign> signs;
+    private int currentSignIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +44,20 @@ public class ASLFingerSpellingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_asl_finger_spelling);
 
         initializeViews();
-        setupTimer();
+        initializeSigns();
+        Collections.shuffle(signs);
         setupButtons();
+        loadSign(currentSignIndex);
+        setupCloseButton();
+        setupTimer();
+
+        torchModelHandler = new TorchModelHandler(this);
+
+        if (checkPermissions()) {
+            initializeCamera();
+        } else {
+            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSION, REQUEST_CODE_PERMISSION);
+        }
     }
 
     private void initializeViews() {
@@ -34,12 +68,26 @@ public class ASLFingerSpellingActivity extends AppCompatActivity {
         underscore2 = findViewById(R.id.underscore2);
         underscore3 = findViewById(R.id.underscore3);
         timerText = findViewById(R.id.timerText);
-        cameraCard = findViewById(R.id.cameraCard);
+        cameraPreview = findViewById(R.id.cameraPreview);
         prevButton = findViewById(R.id.prevButton);
         nextButton = findViewById(R.id.nextButton);
+        detectedWordText = findViewById(R.id.detectedWordText);
+    }
 
-        image1.setImageResource(R.drawable.backpack_placeholder);
-        image2.setImageResource(R.drawable.handbag_placeholder);
+    private void setupCloseButton() {
+        ImageButton closeButton = findViewById(R.id.closeButton);
+        closeButton.setOnClickListener(v -> finish());
+    }
+
+    private void initializeSigns() {
+        signs = new ArrayList<>();
+        signs.add(new ASLSign("ONE", R.drawable.number_1, R.drawable.number_sign_1));
+        // Add more signs here...
+    }
+
+    private void setupButtons() {
+        prevButton.setOnClickListener(v -> moveToPrevious());
+        nextButton.setOnClickListener(v -> moveToNext());
     }
 
     private void setupTimer() {
@@ -55,33 +103,84 @@ public class ASLFingerSpellingActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void setupButtons() {
-        prevButton.setOnClickListener(v -> {
-            // Handle previous button click
-            // e.g., load previous word or image
-        });
-
-        nextButton.setOnClickListener(v -> {
-            // Handle next button click
-            // e.g., load next word or image
-        });
+    private boolean checkPermissions() {
+        for (String permission : REQUIRED_PERMISSION) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private void updateWord(String word) {
-        wordText.setText(word);
+    private void initializeCamera() {
+        cameraManager = new CameraManager(this, cameraPreview, new ImageAnalysis.Analyzer() {
+            @Override
+            public void analyze(ImageProxy image) {
+                ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+                byte[] bytes = new byte[buffer.remaining()];
+                buffer.get(bytes);
+
+                String result = torchModelHandler.analyzeImage(bytes, image.getWidth(), image.getHeight());
+
+                runOnUiThread(() -> {
+                    detectedWordText.setText("Detected: " + result);
+                    if (result.equalsIgnoreCase(signs.get(currentSignIndex).getWord())) {
+                        onSignCorrect();
+                    }
+                });
+
+                image.close();
+            }
+        });
+        cameraManager.startCamera();
+    }
+
+    private void loadSign(int index) {
+        ASLSign currentSign = signs.get(index);
+        image1.setImageResource(currentSign.getQuestionImageResourceId());
+        image2.setImageResource(currentSign.getAnswerImageResourceId());
+        wordText.setText(currentSign.getWord());
+        resetUnderscores();
+    }
+
+    private void resetUnderscores() {
         underscore1.setText("_");
         underscore2.setText("_");
         underscore3.setText("_");
     }
 
-    private void handleUserInput(char letter) {
-        // Update underscores based on user input
-        // Check if the input is correct
-        // Update game state accordingly
+    private void onSignCorrect() {
+        // Handle correct sign logic
+        moveToNext();
     }
 
-    private void startCameraPreview() {
-        // Implement camera preview logic here
+    private void moveToNext() {
+        if (currentSignIndex < signs.size() - 1) {
+            currentSignIndex++;
+            loadSign(currentSignIndex);
+        } else {
+            // End of signs
+            // Add end game logic here
+        }
+    }
+
+    private void moveToPrevious() {
+        if (currentSignIndex > 0) {
+            currentSignIndex--;
+            loadSign(currentSignIndex);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                initializeCamera();
+            } else {
+                // Handle permission denied
+            }
+        }
     }
 
     @Override
@@ -89,6 +188,33 @@ public class ASLFingerSpellingActivity extends AppCompatActivity {
         super.onDestroy();
         if (timer != null) {
             timer.cancel();
+        }
+        if (cameraManager != null) {
+            cameraManager = null;
+        }
+    }
+
+    private static class ASLSign {
+        private String word;
+        private int questionImageResourceId;
+        private int answerImageResourceId;
+
+        public ASLSign(String word, int questionImageResourceId, int answerImageResourceId) {
+            this.word = word;
+            this.questionImageResourceId = questionImageResourceId;
+            this.answerImageResourceId = answerImageResourceId;
+        }
+
+        public String getWord() {
+            return word;
+        }
+
+        public int getQuestionImageResourceId() {
+            return questionImageResourceId;
+        }
+
+        public int getAnswerImageResourceId() {
+            return answerImageResourceId;
         }
     }
 }

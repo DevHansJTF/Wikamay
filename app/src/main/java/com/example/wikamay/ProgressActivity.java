@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ImageView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.Intent;
 import android.util.Log;
@@ -78,7 +77,7 @@ public class ProgressActivity extends AppCompatActivity {
     }
 
     private void setupNextButton() {
-        Button nextButton = findViewById(R.id.nextButton);
+        View nextButton = findViewById(R.id.nextButton);
         if (nextButton != null) {
             nextButton.setOnClickListener(v -> {
                 try {

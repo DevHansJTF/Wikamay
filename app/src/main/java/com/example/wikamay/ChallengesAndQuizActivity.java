@@ -2,6 +2,7 @@ package com.example.wikamay;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class ChallengesAndQuizActivity extends AppCompatActivity {
         setupButtonListener(R.id.aslSignRecognitionQuiz, ASLSignRecognitionActivity.class);
 
         // Set up the back button
-        Button backButton = findViewById(R.id.backButton);
+        FrameLayout backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(ChallengesAndQuizActivity.this, MainActivity.class);
             startActivity(intent);

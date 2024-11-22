@@ -5,7 +5,6 @@ import androidx.core.content.ContextCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.content.Intent;
 import android.util.Log;
@@ -66,9 +65,11 @@ public class QuizzesGamesMasteryActivity extends AppCompatActivity {
     }
 
     private void setupBackButton() {
-        Button backButton = findViewById(R.id.backButton);
+        View backButton = findViewById(R.id.backButton);
         if (backButton != null) {
-            backButton.setOnClickListener(v -> finish());
+            backButton.setOnClickListener(v -> {
+                finish();  // This will close the current activity and return to the previous one (ProgressActivity)
+            });
         } else {
             Log.e(TAG, "backButton not found in layout");
         }

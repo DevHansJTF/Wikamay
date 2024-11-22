@@ -7,32 +7,44 @@
     android:background="@drawable/startup_background"
     tools:context=".StartupActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
+
     <Button
         android:id="@+id/playButton"
-        android:layout_width="369dp"
-        android:layout_height="64dp"
-        android:layout_marginBottom="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:backgroundTint="#FF0000"
-        android:padding="16dp"
         android:text="PLAY"
         android:textColor="#FFFFFF"
-        android:textSize="23sp"
+        android:textSize="@dimen/button_text_size"
         app:cornerRadius="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintDimensionRatio="W,369:64" />
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/description_margin_top"
         android:text="Play, Learn, and Explore with Exciting Quizzes!"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playButton" />
+        android:textSize="@dimen/description_text_size"
+        app:layout_constraintLeft_toLeftOf="@id/playButton"
+        app:layout_constraintRight_toRightOf="@id/playButton"
+        app:layout_constraintTop_toBottomOf="@id/playButton"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="18sp"
+        app:autoSizeStepGranularity="2sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

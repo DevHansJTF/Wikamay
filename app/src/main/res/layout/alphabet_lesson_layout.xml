@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#ffabae">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffabae">
+
+    <ImageButton
+        android:id="@+id/closeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_close"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/lettertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="-10dp"
-        android:text="Aa"
+        android:text="Jj"
         android:textColor="#FFFFFF"
-        android:textSize="110sp"
-        android:textStyle="bold" />
+        android:textSize="100sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"/>
 
     <TextView
         android:id="@+id/text2"
@@ -25,99 +38,134 @@ android:background="#ffabae">
         android:textSize="48sp"
         android:textColor="#FFFF00"
         android:textStyle="bold"
-        android:layout_marginLeft="215dp"
-        android:layout_marginTop="5dp"/>
+        app:layout_constraintTop_toTopOf="@id/lettertext"
+        app:layout_constraintEnd_toStartOf="@id/closeButton"
+        android:layout_marginEnd="16dp"/>
 
     <TextView
         android:id="@+id/wordtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="215dp"
-        android:layout_marginTop="52dp"
-        android:text="Apple"
+        android:layout_marginTop="-12dp"
+        android:text="Jelly"
         android:textColor="#ff0000"
         android:textSize="48sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginEnd="-40dp"
+        app:layout_constraintEnd_toEndOf="@id/text2"
+        app:layout_constraintTop_toBottomOf="@id/text2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalCenterGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/letterImageCard"
-        android:layout_width="175dp"
-        android:layout_height="180dp"
-        android:layout_gravity="start|top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="130dp"
-        android:elevation="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="#FFB6C1">
+        app:cardBackgroundColor="#FFB6C1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/verticalCenterGuideline"
+        app:layout_constraintTop_toBottomOf="@id/lettertext"
+        app:layout_constraintDimensionRatio="1:1">
 
         <ImageView
             android:id="@+id/letterImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:adjustViewBounds="true" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/signImageCard"
-        android:layout_width="175dp"
-        android:layout_height="180dp"
-        android:layout_gravity="end|top"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="130dp"
-        android:elevation="4dp"
         app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="#90EE90">
+        app:cardBackgroundColor="#90EE90"
+        app:layout_constraintStart_toEndOf="@id/verticalCenterGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/letterImageCard"
+        app:layout_constraintDimensionRatio="1:1">
 
         <ImageView
             android:id="@+id/signImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            />
+            android:scaleType="fitCenter" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cameraPreviewCard"
-        android:layout_width="match_parent"
-        android:layout_height="275dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="110dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/letterImageCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/resultIndicator"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:elevation="4dp"
-        app:cardCornerRadius="16dp"
-        app:layout_constraintWidth_percent="1"
-        app:layout_constraintDimensionRatio="1:1"
-        app:cardBackgroundColor="#E0E0E0">
+        android:layout_marginBottom="16dp">
 
         <FrameLayout
-            android:id="@+id/cameraPreview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/cameraPreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/detectedWordText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_margin="16dp"
+                android:text="Detected: Error"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/resultIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="590dp"
-        android:padding="16dp"
         android:text="Great Job!"
         android:textStyle="bold"
         android:textColor="#00a33b"
-        android:textSize="70sp" />
+        android:textSize="70sp"
+        app:layout_constraintBottom_toTopOf="@id/congratsmessage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp"/>
+
     <TextView
         android:id="@+id/congratsmessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="665dp"
-        android:layout_marginLeft="10dp"
-        android:padding="16dp"
         android:text="The sign you did was correct."
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

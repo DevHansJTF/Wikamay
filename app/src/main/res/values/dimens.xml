@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="button_horizontal_margin">16dp</dimen>
+    <dimen name="button_padding">16dp</dimen>
+    <dimen name="button_text_size">23sp</dimen>
+    <dimen name="description_margin_top">8dp</dimen>
+    <dimen name="description_text_size">18sp</dimen>
 </resources>
